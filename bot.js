@@ -1,15 +1,16 @@
 const { Client, Intents } = require('discord.js');
+require('dotenv').config()
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
-client.on("ready", () => {
+client.once("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`)
 });
 
-client.on("message", msg => {
-    if (msg.content === "Someone joined the channel" && msg.author.id == "172002275412279296") {
+client.on("message", function (msg) {
+    if (msg.author.id == 172002275412279296) {
         msg.reply("@everyone");
     }
 });
 
-client.login("OTMzMjgzNDU4NTAxOTcyMDE4.YefR9A.hFXm63fTjKl30NcrE_7QJXodMI0");
+client.login(process.env.token);
